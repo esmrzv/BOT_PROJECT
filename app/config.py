@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     BOT_TOKEN: str
-    ADMINS_ID: list[int]
+    ADMIN_IDS: list[int]
     FORMAT_LOG: str = "{time:YYYY-MM-DD at HH:mm:ss.SSS}  |  {level} | {message}"
     LOG_ROTATION: str = "10 MB"
     DB_URL: str = "sqlite+aiosqlite:///data/db.sqlite3"

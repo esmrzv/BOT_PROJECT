@@ -9,10 +9,10 @@ from loguru import logger
 from config import settings
 
 
-BOT_TOKEN = '6915846876:AAGyf6KAGXvQfp1c9KVwrkUR25bxtKAEzeM'
-bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+
+bot = Bot(token=settings.BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 dp = Dispatcher(storage=MemoryStorage())
-admins = settings.ADMINS_ID
+admins = settings.ADMIN_IDS
 
 log_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'log.txt')
 logger.add(log_file_path, format=settings.LOG_FORMAT, level="INFO", rotation=settings.LOG_ROTATION)
