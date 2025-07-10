@@ -83,7 +83,7 @@ class BaseDao(Generic[T]):
 
 
     @classmethod
-    async def count(cls, session: AsyncSession, filters: BaseModel):
+    async def count(cls, session: AsyncSession, filters: BaseModel | None = None):
         filter_dict = filters.model_dump(exclude_unset=True) if filters else {}
         logger.info(f'Подчет колличества записей по фильтру: {filter_dict}')
         try:
@@ -96,5 +96,9 @@ class BaseDao(Generic[T]):
             logger.info(f'Ошибка при подчете записей {e}')
             raise
 
-
+    @classmethod
+    async def find_all(cls, session: AsyncSession, filters: BaseModel | None = None):
+        query = select(cls.model).filter_by(**filters.model_dump(exclude_unset=True))
+        result = await session.execute(query)
+        return result.scalars().all()
 
