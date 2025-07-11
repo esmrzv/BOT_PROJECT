@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.DAO.dao import CategoryDao, ProductDao
 from app.users.kbs import catalog_db, products_kb
-from app.users.shemas import ProductCategoryIDModel
+from app.users.schemas import ProductCategoryIDModel
 
 catalog_router = Router()
 
