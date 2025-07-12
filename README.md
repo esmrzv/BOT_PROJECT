@@ -1,7 +1,7 @@
 # 📦 Telegram Bot Shop (Python + Aiogram)
 
-Телеграм-бот для продажи цифровых товаров, реализованный с использованием **Aiogram 3**, **SQLAlchemy 2**, **Aiosqlite
-**, **Alembic**, **Pydantic** и Telegram Payments.
+Телеграм-бот для продажи цифровых товаров, реализованный с использованием **Aiogram 3**, **SQLAlchemy 2**, **Aiosqlite**
+, **Alembic**, **Pydantic** 
 
 
 
