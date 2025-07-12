@@ -4,7 +4,6 @@ from aiogram.types import Message, CallbackQuery
 from app.DAO.database import async_session_maker
 
 
-
 class BaseDatabaseMiddleware(BaseMiddleware):
     async def __call__(self,
                        handler: Callable[[Message | CallbackQuery, Dict[str, Any]], Awaitable[Any]],
@@ -21,17 +20,24 @@ class BaseDatabaseMiddleware(BaseMiddleware):
             finally:
                 await session.close()
 
-    def set_session(self,data:Dict[str, Any], session)-> None:
+    def set_session(self, data: Dict[str, Any], session) -> None:
         raise NotImplementedError
 
-    async def after_handler(self,session):
+    async def after_handler(self, session):
         pass
 
 
-
 class DatabaseMiddlewareWithoutCommit(BaseDatabaseMiddleware):
-    def set_session(self,data:Dict[str, Any], session):
+    def set_session(self, data: Dict[str, Any], session) -> None:
+        """Устанавливаем сессию без коммита."""
         data['session_without_commit'] = session
 
-    async def after_handler(self,session):
+
+class DatabaseMiddlewareWithCommit(BaseDatabaseMiddleware):
+    def set_session(self, data: Dict[str, Any], session) -> None:
+        """Устанавливаем сессию с коммитом."""
+        data['session_with_commit'] = session
+
+    async def after_handler(self, session) -> None:
+        """Фиксируем изменения после обработки события."""
         await session.commit()

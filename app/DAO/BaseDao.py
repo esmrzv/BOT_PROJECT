@@ -98,7 +98,9 @@ class BaseDao(Generic[T]):
 
     @classmethod
     async def find_all(cls, session: AsyncSession, filters: BaseModel | None = None):
-        query = select(cls.model).filter_by(**filters.model_dump(exclude_unset=True))
+        filter_dict = filters.model_dump(exclude_unset=True) if filters else {}
+        query = select(cls.model).filter_by(**filter_dict)
         result = await session.execute(query)
-        return result.scalars().all()
+        record = result.scalars().all()
+        return record
 

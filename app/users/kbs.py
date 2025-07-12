@@ -8,7 +8,7 @@ from app.config import settings
 
 def main_user_kb(user_id: int):
     kb = InlineKeyboardBuilder()
-    kb.button(text='Мои покупки', callback_data='my profile')
+    kb.button(text='Мои покупки', callback_data='profile')
     kb.button(text='Каталог', callback_data='catalog')
     kb.button(text='О магазине', callback_data='about')
     if user_id in settings.ADMIN_IDS:
@@ -21,7 +21,7 @@ def main_user_kb(user_id: int):
 def catalog_db(catalog_data: List[Category]):
     kb = InlineKeyboardBuilder()
     for category in catalog_data:
-        kb.button(text=category.category_name, callback_data=f'category_id{category.id}')
+        kb.button(text=category.category_name, callback_data=f'catalog_{category.id}')
     kb.button(text='На главную', callback_data='home')
     kb.adjust(2)
     return kb.as_markup()

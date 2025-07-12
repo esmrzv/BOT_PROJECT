@@ -8,7 +8,8 @@ class TelegramIDModel(BaseModel):
 
 
 class UserModel(BaseModel):
-    username: str | None
+    telegram_id: int
+    username: str | None = None
     first_name: str | None
     last_name: str | None
 

@@ -18,16 +18,16 @@ def admin_send_file_kb():
     kb.button(text='Без файла', callback_data='without file')
     kb.button(text='Отмена', callback_data='admin_panel')
     kb.adjust(2)
-    kb.as_markup()
+    return kb.as_markup()
 
 
 def admin_kb():
     kb = InlineKeyboardBuilder()
-    kb.button(text="📊 Статистика", callback_data='statistic')
+    kb.button(text="📊 Статистика", callback_data='statistics')
     kb.button(text="🛍️ Управлять товарами", callback_data='process_product')
     kb.button(text="🏠 На главную", callback_data='home')
     kb.adjust(2)
-    kb.as_markup()
+    return kb.as_markup()
 
 
 

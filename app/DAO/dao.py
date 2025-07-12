@@ -1,9 +1,6 @@
-from cgitb import reset
-
 from app.DAO.BaseDao import BaseDao
 from app.DAO.models import Category, Product, Purchase, User
 from datetime import datetime, UTC, timedelta
-from typing import Optional, List, Dict
 
 from loguru import logger
 from sqlalchemy import select, func, case, except_
@@ -27,7 +24,7 @@ class PurchaseDao(BaseDao[Purchase]):
     async def get_summ(cls, session: AsyncSession):
         query = select(func.sum(cls.model.price).label('total_price'))
         result = await session.execute(query)
-        record = result.scalar().one_or_none()
+        record = result.scalars().one_or_none()
         return record if record is not None else 0
 
 
