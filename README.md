@@ -3,7 +3,7 @@
 Телеграм-бот для продажи цифровых товаров, реализованный с использованием **Aiogram 3**, **SQLAlchemy 2**, **Aiosqlite
 **, **Alembic**, **Pydantic** и Telegram Payments.
 
-Проект основан на [статье на Habr](https://habr.com/ru/companies/amvera/articles/869136/).
+
 
 ---
 
